@@ -1,0 +1,82 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.mob.sdk'
+
+android {
+    compileSdkVersion findAnalySDKCompileSdkVersion()
+    buildToolsVersion findBuildTools()
+    
+    defaultConfig {
+        manifestPlaceholders = [appName : "AnalySDKDemo"]
+        applicationId "com.mob.analy.sample"
+        minSdkVersion 17
+        targetSdkVersion 25
+        versionCode 2
+        versionName "1.1.0"
+    }
+
+    sourceSets.main {
+        manifest.srcFile 'AndroidManifest.xml'
+        assets.srcDirs = ['assets']
+        java.srcDirs = ['src']
+        aidl.srcDirs = ['src']
+        res.srcDirs = ['res']
+        jniLibs.srcDirs = ['libs']
+    }
+    
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+MobSDK {
+    appKey "247bc92cf1092"
+    appSecret "5f867441834f63245326718d00c5c43a"
+
+    AnalySDK {}
+}
+
+int findAnalySDKCompileSdkVersion() {
+    def projProp = new File(projectDir, "project.properties")
+    if (projProp.exists()) {
+        def properties = new Properties()
+        projProp.withInputStream {
+            instr->properties.load(instr)
+        }
+        def target = properties.getProperty('target').trim()
+        def pref = "android-"
+        if (target != null && target.startsWith(pref)) {
+            try {
+                return Integer.parseInt(target.substring(pref.length()))
+            } catch (Throwable t) {
+                return 21;
+            }
+        }
+    }
+}
+
+String findBuildTools() {
+    def localProperties = new File(rootProject.projectDir, "local.properties")
+    if (localProperties.exists()) {
+        def properties = new Properties()
+        localProperties.withInputStream {
+            instr->properties.load(instr)
+        }
+        def sdkDir = properties.getProperty('sdk.dir')
+        def buildTools = new File(sdkDir, "build-tools")
+        if (buildTools.exists()) {
+            def tools = buildTools.list()
+            if (tools != null) {
+                Arrays.sort(tools)
+                return tools[tools.length - 1]
+            }
+        }
+    }
+    return "25.0.2"
+}

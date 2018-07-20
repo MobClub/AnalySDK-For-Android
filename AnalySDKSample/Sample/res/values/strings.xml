@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">AnalySDKDemo</string>
+	
+	<string name="source">来源source</string>
+	<string name="path">路径path</string>
+	
+	<string name="common_scenes">常见应用场景</string>
+	<string name="game_app">游戏App</string>
+	<string name="news_app">资讯App</string>
+	<string name="vedio_app">视频App</string>
+	<string name="shopping_app">电商App</string>
+	<string name="shopping_title">电商</string>
+	<string name="shopping_suggestion">相关推荐</string>
+	<string name="buy_now">立刻购买</string>
+	<string name="today_news">今日新闻</string>
+	<string name="related_news">相关新闻</string>
+	<string name="movies">电影视频</string>
+	<string name="related_videos">专题联播</string>
+	<string name="game_zhifu">游戏支付</string>
+	<string name="game_register">注册</string>
+	<string name="game_login">登录</string>
+	<string name="game_update">更新用户信息</string>
+	<string name="role_new">新建角色</string>
+	<string name="role_login">角色登录</string>
+	<string name="role_update">角色更新</string>
+	
+	<string name="param">参数</string>
+	<string name="close">关闭</string>
+	
+	<string name="dialog_text">是否进行还原场景？</string>
+	<string name="yes">是</string>
+	<string name="no">否</string>
+	<string name="please_get_mobid">请先获取MobID</string>
+</resources>
