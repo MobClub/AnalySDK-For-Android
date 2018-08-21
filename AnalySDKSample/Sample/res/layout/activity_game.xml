@@ -1,57 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-    android:layout_margin="16dp">
-   <Button
-       android:id="@+id/payEvent"
-       android:layout_marginTop="16dp"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_gravity="center_horizontal"
-       android:text="@string/game_zhifu"/>
-   <Button
-       android:id="@+id/userCreate"
-       android:layout_marginTop="4dp"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_gravity="center_horizontal"
-       android:text="@string/game_register"/>
-   <Button
-       android:id="@+id/userLogin"
-       android:layout_marginTop="4dp"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_gravity="center_horizontal"
-       android:text="@string/game_login"/>
-   <Button
-       android:id="@+id/userUpdate"
-       android:layout_marginTop="4dp"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_gravity="center_horizontal"
-       android:text="@string/game_update"/>
-   <Button
-       android:id="@+id/roleCreate"
-       android:layout_marginTop="4dp"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_gravity="center_horizontal"
-       android:text="@string/role_new"/>
-   <Button
-       android:id="@+id/roleLogin"
-       android:layout_marginTop="4dp"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_gravity="center_horizontal"
-       android:text="@string/role_login"/>
-   <Button
-       android:id="@+id/roleUpdate"
-       android:layout_marginTop="4dp"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_gravity="center_horizontal"
-       android:text="@string/role_update"/>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/payEvent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:text="@string/game_zhifu"/>
+
+        <Button
+            android:id="@+id/userCreate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:text="@string/game_register"/>
+
+        <Button
+            android:id="@+id/userLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:text="@string/game_login"/>
+
+        <Button
+            android:id="@+id/userUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:text="@string/game_update"/>
+
+        <Button
+            android:id="@+id/roleCreate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:text="@string/role_new"/>
+
+        <Button
+            android:id="@+id/roleLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:text="@string/role_login"/>
+
+        <Button
+            android:id="@+id/roleUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:text="@string/role_update"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/setEventStack"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/set_event_stack_end"/>
+
+            <Button
+                android:id="@+id/setEventOnly"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/set_event_random_end"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/behaviorStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:text="@string/start_event"/>
+
+        <Button
+            android:id="@+id/behaviorEnd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:text="@string/end_event"/>
+
+    </LinearLayout>
+</ScrollView>

@@ -24,7 +24,11 @@
 	<string name="role_new">新建角色</string>
 	<string name="role_login">角色登录</string>
 	<string name="role_update">角色更新</string>
-	
+	<string name="start_event">事件开始</string>
+	<string name="end_event">事件结束</string>
+	<string name="set_event_stack_end">事件以先进后出形式结束</string>
+	<string name="set_event_random_end">事件按唯一性随机结束</string>
+
 	<string name="param">参数</string>
 	<string name="close">关闭</string>
 	

@@ -9,6 +9,10 @@ import com.mob.game.GameUserEvent;
 import com.mob.game.PayEvent;
 import com.mob.game.RoleEvent;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
+
 
 /**
  * Created by yjin on 2018/1/29.
@@ -16,10 +20,16 @@ import com.mob.game.RoleEvent;
 
 public class GameActivity extends Activity implements View.OnClickListener {
 
+	private boolean isOnlyEvent;
+	private ArrayList<String> onlyEventTags;
+	private Random random;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
+		onlyEventTags = new ArrayList<String>();
+		random = new Random();
 		init();
 	}
 
@@ -31,6 +41,26 @@ public class GameActivity extends Activity implements View.OnClickListener {
 		findViewById(R.id.roleCreate).setOnClickListener(this);
 		findViewById(R.id.roleLogin).setOnClickListener(this);
 		findViewById(R.id.roleUpdate).setOnClickListener(this);
+		findViewById(R.id.setEventOnly).setOnClickListener(this);
+		findViewById(R.id.setEventStack).setOnClickListener(this);
+		findViewById(R.id.behaviorStart).setOnClickListener(this);
+		findViewById(R.id.behaviorEnd).setOnClickListener(this);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("params", "openGamePage");
+		AnalySDK.behaviorStart("GamePage", map);
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("params", "closeGamePage");
+		AnalySDK.behaviorEnd("GamePage", map);
 	}
 
 	@Override
@@ -56,6 +86,37 @@ public class GameActivity extends Activity implements View.OnClickListener {
 				break;
 			case R.id.roleUpdate:
 				roleUpdate();
+				break;
+			case R.id.behaviorStart:
+				if (isOnlyEvent) {
+					Object object = new Object();
+					HashMap<String, Object> map = new HashMap<String, Object>();
+					map.put("onlyEventTag", String.valueOf(object.hashCode()));
+					onlyEventTags.add(String.valueOf(object.hashCode()));
+					AnalySDK.behaviorStart("gameEvent", String.valueOf(object.hashCode()), map);
+				} else {
+					AnalySDK.behaviorStart("stackEvent", null);
+				}
+				break;
+			case R.id.behaviorEnd:
+				if (isOnlyEvent) {
+					String onlyEventTag = "test";
+					if (onlyEventTags.size() > 0) {
+						onlyEventTag = onlyEventTags.get(random.nextInt(onlyEventTags.size()));
+					}
+					HashMap<String, Object> map = new HashMap<String, Object>();
+					map.put("onlyEventTag", onlyEventTag);
+					onlyEventTags.remove(onlyEventTag);
+					AnalySDK.behaviorEnd("gameEvent", onlyEventTag, map);
+				} else {
+					AnalySDK.behaviorEnd("stackEvent", null);
+				}
+				break;
+			case R.id.setEventStack:
+				isOnlyEvent = false;
+				break;
+			case R.id.setEventOnly:
+				isOnlyEvent = true;
 				break;
 		}
 
@@ -97,7 +158,7 @@ public class GameActivity extends Activity implements View.OnClickListener {
 		roleEvent.roCareer = "九魂道人";
 		roleEvent.roLevel = 999+1;
 		roleEvent.roVip = "vip4";
-		roleEvent.roRankLevel = 111;
+		roleEvent.roRankLevel = "青铜";
 		roleEvent.roEnergy = 32;
 		roleEvent.roMoney = 55;
 		roleEvent.roCoin = 33;
